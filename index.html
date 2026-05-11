@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dungeon Chef</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="game-wrapper">
+    <h1>Dungeon Chef</h1>
+    <p>Erkunde unendliche Räume, sammle Zutaten, koche Gerichte und überlebe so lange wie möglich.</p>
+
+    <div id="main-layout">
+      <aside class="side-panel">
+        <h2>Spielerwerte</h2>
+        <div id="stats-text"></div>
+      </aside>
+
+      <main id="center-area">
+        <div id="game-container"></div>
+
+        <div id="bottom-panel">
+          <div class="bottom-column">
+            <h2>Hinweis</h2>
+            <div id="hint-text">Starte einen Run im Hauptmenü.</div>
+          </div>
+
+          <div class="bottom-column">
+            <h2>Aktive Effekte</h2>
+            <div id="effects-text">Keine aktiven Effekte.</div>
+          </div>
+        </div>
+      </main>
+
+      <aside class="side-panel">
+        <h2>Skills</h2>
+        <div id="skills-text"></div>
+      </aside>
+    </div>
+  </div>
+
+  <div id="main-menu">
+    <div class="menu-card">
+      <div class="menu-header">
+        <h2>Dungeon Chef</h2>
+      </div>
+
+      <p class="menu-subtitle">
+        Jeder Raum ist neu. Die Gegner werden immer stärker, schneller und gefährlicher, bis du irgendwann fällst.
+      </p>
+
+      <div class="menu-layout">
+        <div class="menu-section">
+          <h3>Run starten</h3>
+          <p>Laufe durch Türen, um neue Räume zu betreten. Zutaten werden automatisch aufgehoben.</p>
+          <button id="start-run-button" class="primary-button">Neuen Run starten</button>
+        </div>
+
+        <div class="menu-section">
+          <h3>Meta-Fortschritt</h3>
+          <div id="meta-text"></div>
+        </div>
+
+        <div class="menu-section">
+          <h3>Skilltree</h3>
+          <p>Gib Küchenmarken aus, um dauerhafte Talente freizuschalten.</p>
+          <button id="open-skilltree-button" class="primary-button">Skilltree öffnen</button>
+        </div>
+
+        <div class="menu-section">
+          <h3>Kochbuch</h3>
+          <div id="menu-cookbook-text">Noch keine Rezepte entdeckt.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="run-end-menu" class="hidden">
+    <div class="menu-card">
+      <div class="menu-header">
+        <h2 id="run-end-title">Run beendet</h2>
+      </div>
+
+      <p id="run-end-summary" class="menu-subtitle"></p>
+
+      <div class="menu-section">
+        <h3>Run-Auswertung</h3>
+        <div id="run-result-text"></div>
+      </div>
+
+      <button id="back-to-menu-button" class="primary-button">Zurück zum Hauptmenü</button>
+    </div>
+  </div>
+
+  <div id="skilltree-menu" class="hidden">
+    <div class="menu-card skilltree-card">
+      <div class="menu-header">
+        <h2>Skilltree</h2>
+        <button id="close-skilltree-menu" class="menu-close-button">✕</button>
+      </div>
+
+      <p class="menu-subtitle">
+        Investiere Küchenmarken in dauerhafte Talente. Manche Talente benötigen vorherige Freischaltungen.
+      </p>
+
+      <div id="skilltree-info"></div>
+      <div id="skilltree-grid"></div>
+    </div>
+  </div>
+
+  <div id="inventory-menu" class="hidden">
+    <div class="menu-card">
+      <div class="menu-header">
+        <h2>Inventar</h2>
+        <button id="close-inventory-menu" class="menu-close-button">✕</button>
+      </div>
+
+      <p class="menu-subtitle">
+        Zutaten, Gerichte und Kochbuch. Das Spiel pausiert, solange dieses Menü geöffnet ist.
+      </p>
+
+      <div id="inventory-grid">
+        <div class="inventory-section">
+          <h3>Zutaten</h3>
+          <div id="ingredients-text">Noch keine Zutaten gesammelt.</div>
+        </div>
+
+        <div class="inventory-section">
+          <h3>Gerichte</h3>
+          <div id="meals-text">Noch keine Gerichte gekocht.</div>
+        </div>
+
+        <div class="inventory-section">
+          <h3>Kochbuch</h3>
+          <div id="cookbook-text">Noch keine Gerichte probiert.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cooking-menu" class="hidden">
+    <div class="menu-card">
+      <div class="menu-header">
+        <h2>Kochstelle</h2>
+        <button id="close-cooking-menu" class="menu-close-button">✕</button>
+      </div>
+
+      <p class="menu-subtitle">Effekte werden erst enthüllt, nachdem du ein Gericht gegessen hast.</p>
+      <div id="recipes-list"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
