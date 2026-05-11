@@ -1,0 +1,545 @@
+body {
+  margin: 0;
+  background-color: #1f1f1f;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#game-wrapper {
+  padding-top: 18px;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 0;
+  color: #cfcfcf;
+}
+
+#main-layout {
+  display: grid;
+  grid-template-columns: 240px 800px 260px;
+  gap: 18px;
+  justify-content: center;
+  align-items: start;
+  margin-top: 18px;
+}
+
+#center-area {
+  width: 800px;
+}
+
+#game-container {
+  width: 800px;
+  height: 512px;
+  border: 4px solid #5c4033;
+  background-color: #000;
+  box-sizing: border-box;
+}
+
+.side-panel,
+#bottom-panel {
+  border: 4px solid #5c4033;
+  background-color: #2b211c;
+  box-sizing: border-box;
+}
+
+.side-panel {
+  min-height: 512px;
+  padding: 14px;
+  text-align: left;
+}
+
+#bottom-panel {
+  margin-top: 14px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 14px;
+  text-align: left;
+}
+
+.bottom-column,
+.inventory-section,
+.menu-section {
+  background-color: #1f1713;
+  border: 2px solid #4a3428;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.side-panel h2,
+#bottom-panel h2,
+.inventory-section h3,
+.menu-section h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #ffd27d;
+  font-size: 18px;
+}
+
+#ingredients-text,
+#meals-text,
+#hint-text,
+#stats-text,
+#effects-text,
+#skills-text,
+#cookbook-text,
+#menu-cookbook-text,
+#meta-text,
+#run-result-text {
+  color: #ffffff;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.stat-row,
+.skill-row,
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #3b2a22;
+  padding: 4px 0;
+}
+
+.stat-name,
+.skill-name,
+.meta-name {
+  color: #d5c6bb;
+}
+
+.stat-value,
+.skill-value,
+.meta-value {
+  color: #ffffff;
+}
+
+.skill-xp {
+  color: #93c5fd;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.skill-bonus {
+  color: #a7f3d0;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.hp-good {
+  color: #22c55e;
+}
+
+.hp-medium {
+  color: #eab308;
+}
+
+.hp-low {
+  color: #ef4444;
+}
+
+.inventory-entry,
+.cookbook-entry {
+  margin-bottom: 8px;
+}
+
+.item-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.item-count {
+  color: #aaaaaa;
+  margin-left: 4px;
+}
+
+.item-effect {
+  display: block;
+  color: #d5c6bb;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.use-meal-button,
+.primary-button {
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.use-meal-button {
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+.use-meal-button:hover,
+.primary-button:hover {
+  background-color: #1d4ed8;
+}
+
+.primary-button {
+  background-color: #22c55e;
+  margin-top: 8px;
+}
+
+.primary-button:hover {
+  background-color: #16a34a;
+}
+
+.rarity-common {
+  color: #d9d9d9;
+}
+
+.rarity-uncommon {
+  color: #22c55e;
+}
+
+.rarity-rare {
+  color: #3b82f6;
+}
+
+.rarity-epic {
+  color: #a855f7;
+}
+
+.rarity-legendary {
+  color: #f97316;
+}
+
+.effect-entry {
+  color: #93c5fd;
+  margin-bottom: 4px;
+}
+
+#main-menu,
+#run-end-menu,
+#cooking-menu,
+#inventory-menu,
+#skilltree-menu {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+#skilltree-menu {
+  background-color: rgba(0, 0, 0, 0.82);
+  z-index: 2100;
+}
+
+#main-menu.hidden,
+#run-end-menu.hidden,
+#cooking-menu.hidden,
+#inventory-menu.hidden,
+#skilltree-menu.hidden {
+  display: none;
+}
+
+.menu-card {
+  width: 880px;
+  max-width: 92vw;
+  max-height: 84vh;
+  overflow-y: auto;
+  background-color: #241b16;
+  border: 4px solid #6f4e37;
+  border-radius: 14px;
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: left;
+}
+
+.skilltree-card {
+  width: 1040px;
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.menu-header h2 {
+  margin: 0;
+  color: #ffd27d;
+}
+
+.menu-subtitle {
+  color: #d5c6bb;
+  margin-bottom: 16px;
+}
+
+.menu-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.menu-close-button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4a3428;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.menu-close-button:hover {
+  background-color: #6b4a38;
+}
+
+#inventory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 14px;
+}
+
+#recipes-list {
+  display: grid;
+  gap: 14px;
+}
+
+.recipe-card {
+  background-color: #1b1410;
+  border: 2px solid #4a3428;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.recipe-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.recipe-title {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+}
+
+.recipe-description {
+  margin: 0 0 8px 0;
+  color: #d4c3b6;
+  font-size: 14px;
+}
+
+.recipe-info {
+  margin: 0 0 8px 0;
+  color: #f1e4da;
+  font-size: 14px;
+}
+
+.recipe-requirements {
+  margin: 0;
+  color: #f1e4da;
+  font-size: 14px;
+}
+
+.recipe-status {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.status-ready {
+  color: #22c55e;
+}
+
+.status-missing {
+  color: #f87171;
+}
+
+.status-unknown {
+  color: #facc15;
+}
+
+.cook-button {
+  min-width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: #22c55e;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cook-button:hover {
+  background-color: #16a34a;
+}
+
+.cook-button:disabled {
+  background-color: #5b5b5b;
+  color: #d0d0d0;
+  cursor: not-allowed;
+}
+
+.recipe-border-common {
+  border-color: #8b8b8b;
+}
+
+.recipe-border-uncommon {
+  border-color: #22c55e;
+}
+
+.recipe-border-rare {
+  border-color: #3b82f6;
+}
+
+.recipe-border-epic {
+  border-color: #a855f7;
+}
+
+.recipe-border-legendary {
+  border-color: #f97316;
+}
+
+#skilltree-info {
+  margin-bottom: 16px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+#skilltree-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.skill-node {
+  min-height: 155px;
+  background: radial-gradient(circle at top, #2f251f, #17100d);
+  border: 2px solid #4a3428;
+  border-radius: 14px;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.skill-node.unlocked {
+  border-color: #22c55e;
+  box-shadow: 0 0 14px rgba(34, 197, 94, 0.25);
+}
+
+.skill-node.available {
+  border-color: #facc15;
+  box-shadow: 0 0 12px rgba(250, 204, 21, 0.18);
+}
+
+.skill-node.locked {
+  opacity: 0.58;
+}
+
+.skill-node-title {
+  margin: 0 0 6px 0;
+  color: #ffd27d;
+  font-size: 16px;
+}
+
+.skill-node-type {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background-color: #3b2a22;
+  color: #d5c6bb;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.skill-node-description {
+  color: #f1e4da;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.skill-node-requirement {
+  color: #f87171;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.skill-node-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-node-cost {
+  color: #93c5fd;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.skill-node-button {
+  border: none;
+  border-radius: 8px;
+  background-color: #22c55e;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 7px 10px;
+  font-size: 13px;
+}
+
+.skill-node-button:hover {
+  background-color: #16a34a;
+}
+
+.skill-node-button:disabled {
+  background-color: #5b5b5b;
+  color: #d0d0d0;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1350px) {
+  #main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .side-panel,
+  #center-area {
+    width: 800px;
+    max-width: 95vw;
+    margin: 0 auto;
+  }
+
+  .side-panel {
+    min-height: auto;
+  }
+
+  #inventory-grid,
+  .menu-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1050px) {
+  #skilltree-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  #skilltree-grid {
+    grid-template-columns: 1fr;
+  }
+}
